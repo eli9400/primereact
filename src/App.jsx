@@ -79,7 +79,7 @@ function App() {
                 },
               });
             }}
-            placeholder="הזן כן לסינון"
+            placeholder="הזן כאן לסינון"
           />
           <DataTable value={dataWithCombinedDateTime} filters={filters}>
             <Column field="name" header="שם משתמש" />
@@ -100,7 +100,7 @@ function App() {
                 },
               });
             }}
-            placeholder="הזן כן לסינון"
+            placeholder="הזן כאן לסינון"
           />
           <DataTable value={data} filters={filters}>
             <Column field="name" header="שם משתמש" />
