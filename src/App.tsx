@@ -1,14 +1,22 @@
-import "./App.css";
-
+import React, { useState } from "react";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
+import { TabView, TabPanel } from "primereact/tabview";
+/* import { FilterMatchMode } from "primereact/api"; */
+import { InputText } from "primereact/inputtext";
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
-import { useState } from "react";
-import { FilterMatchMode } from "primereact/api";
-import { InputText } from "primereact/inputtext";
-import { TabView, TabPanel } from "primereact/tabview";
-const data = [
+
+interface DataItem {
+  date: string;
+  time: string;
+  name: string;
+  component: string;
+  action: string;
+  tips: string;
+}
+
+const data: DataItem[] = [
   {
     date: "01/01/2020",
     time: "10:30",
@@ -58,30 +66,31 @@ const data = [
     tips: "אתר",
   },
 ];
-function App() {
-  const [filters, setFilters] = useState({
-    global: { value: null, matchMode: FilterMatchMode.CONTAINS },
-  });
-  const dataWithCombinedDateTime = data.map((item) => ({
+
+const App: React.FC = () => {
+  const [globalFilter, setGlobalFilter] = useState<string | null>(null);
+  /* const [dateTimeFilter, setDateTimeFilter] = useState<string | null>(null); */
+
+  const dataWithCombinedDateTime: DataItem[] = data.map((item) => ({
     ...item,
     dateTime: `${item.date} ${item.time}`,
   }));
+
   return (
     <div className="App">
       <TabView>
         <TabPanel header="דוח מפורט">
           <InputText
-            onInput={(e) => {
-              setFilters({
-                global: {
-                  value: e.target.value,
-                  matchMode: FilterMatchMode.CONTAINS,
-                },
-              });
-            }}
-            placeholder="הזן כאן לסינון"
+            value={globalFilter || ""}
+            onInput={(e) =>
+              setGlobalFilter((e.target as HTMLInputElement).value)
+            }
+            placeholder="הזן מילות חיפוש"
           />
-          <DataTable value={dataWithCombinedDateTime} filters={filters}>
+          <DataTable
+            value={dataWithCombinedDateTime}
+            globalFilter={globalFilter}
+          >
             <Column field="name" header="שם משתמש" />
             <Column field="component" header="רכיב" />
             <Column field="tips" header="סוג" />
@@ -92,17 +101,13 @@ function App() {
 
         <TabPanel header="דוח מצומצם">
           <InputText
-            onInput={(e) => {
-              setFilters({
-                global: {
-                  value: e.target.value,
-                  matchMode: FilterMatchMode.CONTAINS,
-                },
-              });
-            }}
-            placeholder="הזן כאן לסינון"
+            value={globalFilter || ""}
+            onInput={(e) =>
+              setGlobalFilter((e.target as HTMLInputElement).value)
+            }
+            placeholder="Filter by date/time"
           />
-          <DataTable value={data} filters={filters}>
+          <DataTable value={data} globalFilter={globalFilter}>
             <Column field="name" header="שם משתמש" />
             <Column field="time" header="שעה" />
             <Column field="date" header="תאריך" />
@@ -111,6 +116,6 @@ function App() {
       </TabView>
     </div>
   );
-}
+};
 
 export default App;
