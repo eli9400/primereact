@@ -108,7 +108,13 @@ const App: React.FC = () => {
             }
             placeholder="הזן מילות חיפוש"
           />
-          <DataTable value={data} globalFilter={globalFilter}>
+          <DataTable
+            value={data}
+            globalFilter={globalFilter}
+            paginator
+            rows={data.length}
+            rowsPerPageOptions={[3, 6, 9]}
+          >
             <Column field="name" header="שם משתמש" />
             <Column field="time" header="שעה" />
             <Column field="date" header="תאריך" />
