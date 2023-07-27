@@ -2,11 +2,10 @@ import React, { useState } from "react";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { TabView, TabPanel } from "primereact/tabview";
-/* import { FilterMatchMode } from "primereact/api"; */
 import { InputText } from "primereact/inputtext";
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
-
+import "./App.css";
 interface DataItem {
   date: string;
   time: string;
@@ -69,7 +68,6 @@ const data: DataItem[] = [
 
 const App: React.FC = () => {
   const [globalFilter, setGlobalFilter] = useState<string | null>(null);
-  /* const [dateTimeFilter, setDateTimeFilter] = useState<string | null>(null); */
 
   const dataWithCombinedDateTime: DataItem[] = data.map((item) => ({
     ...item,
@@ -90,6 +88,9 @@ const App: React.FC = () => {
           <DataTable
             value={dataWithCombinedDateTime}
             globalFilter={globalFilter}
+            paginator
+            rows={data.length}
+            rowsPerPageOptions={[3, 6, 9]}
           >
             <Column field="name" header="שם משתמש" />
             <Column field="component" header="רכיב" />
@@ -105,7 +106,7 @@ const App: React.FC = () => {
             onInput={(e) =>
               setGlobalFilter((e.target as HTMLInputElement).value)
             }
-            placeholder="Filter by date/time"
+            placeholder="הזן מילות חיפוש"
           />
           <DataTable value={data} globalFilter={globalFilter}>
             <Column field="name" header="שם משתמש" />
