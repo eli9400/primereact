@@ -41,7 +41,7 @@ const App: React.FC = () => {
             placeholder="הזן מילות חיפוש"
           />
           <DataTable
-            value={dataWithCombinedDateTime}
+            value={data}
             globalFilter={globalFilter}
             paginator
             rows={data!.length}
