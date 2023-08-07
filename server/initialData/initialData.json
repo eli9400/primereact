@@ -1,0 +1,52 @@
+{
+  "data": [
+    {
+      "date": "01/01/2020",
+      "time": "10:30",
+      "name": "user1",
+      "component": "תמונה",
+      "action": "לחיצה",
+      "tips": "אפליקצייה"
+    },
+    {
+      "date": "01/02/2020",
+      "time": "9:30",
+      "name": "user2",
+      "component": "דוח",
+      "action": "העלאה",
+      "tips": "אפליקצייה"
+    },
+    {
+      "date": "01/03/2020",
+      "time": "8:30",
+      "name": "user3",
+      "component": "שרטוט",
+      "action": "עדכון",
+      "tips": "אתר"
+    },
+    {
+      "date": "01/04/2020",
+      "time": "7:30",
+      "name": "user4",
+      "component": "מפה",
+      "action": "הורדה",
+      "tips": "אתר"
+    },
+    {
+      "date": "01/01/2021",
+      "time": "6:30",
+      "name": "user5",
+      "component": "טופס",
+      "action": "התחברות",
+      "tips": "אפליקצייה"
+    },
+    {
+      "date": "01/02/2021",
+      "time": "5:30",
+      "name": "user6",
+      "component": "טופס",
+      "action": "התנתקות",
+      "tips": "אתר"
+    }
+  ]
+}
