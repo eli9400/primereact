@@ -8,6 +8,7 @@ type ErrorType = null | string;
 
 const useData = () => {
   const [data, setData] = useState<Data>(null);
+  const [dateTime, setDataTime] = useState<DataItem[] | null>(null);
   const [error, setError] = useState<ErrorType>(null);
   const handelGetData = async () => {
     try {
@@ -15,14 +16,22 @@ const useData = () => {
       console.log(dataFrom);
 
       if (dataFrom) setData(dataFrom);
+      
+        setDataTime(() => {
+          return dataFrom.map((item) => ({
+            ...item,
+            dateTime: `${item.date} ${item.time}`,
+          }));
+        });
+      
       return dataFrom;
     } catch (error) {
       if (typeof error === "string") setError(error);
     }
   };
   const value = useMemo(() => {
-    return { data, error };
-  }, [data, error]);
+    return { data,dateTime, error };
+  }, [data,dateTime, error]);
   return {
     value,
     handelGetData,

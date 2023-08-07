@@ -8,20 +8,17 @@ import "primereact/resources/primereact.min.css";
 import "./App.css";
 
 import useData from "./hooks/useData";
-import { DataItem } from "./helpers/interface";
 
 const App: React.FC = () => {
   const { handelGetData, value } = useData();
-  const { data, error } = value;
+  const { data, dateTime, error } = value;
 
   useEffect(() => {
     handelGetData();
   }, []);
-  const [globalFilter, setGlobalFilter] = useState<string | null>(null);
-/*  const dataWithCombinedDateTime: DataItem[] = data!.map((item) => ({
-   ...item,
-   dateTime: `${item.date} ${item.time}`,
- })); */
+  const [globalFilter, setGlobalFilter] = useState<string | undefined>(
+    undefined
+  );
 
   if (!data)
     return (
@@ -41,7 +38,7 @@ const App: React.FC = () => {
             placeholder="הזן מילות חיפוש"
           />
           <DataTable
-            value={data}
+            value={dateTime!}
             globalFilter={globalFilter}
             paginator
             rows={data!.length}
