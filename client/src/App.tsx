@@ -18,10 +18,10 @@ const App: React.FC = () => {
     handelGetData();
   }, []);
   const [globalFilter, setGlobalFilter] = useState<string | null>(null);
- const dataWithCombinedDateTime: DataItem[] = data!.map((item) => ({
+/*  const dataWithCombinedDateTime: DataItem[] = data!.map((item) => ({
    ...item,
    dateTime: `${item.date} ${item.time}`,
- }));
+ })); */
 
   if (!data)
     return (
